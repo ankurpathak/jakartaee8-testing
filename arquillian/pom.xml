@@ -245,6 +245,11 @@
                     <artifactId>arquillian-payara-server-managed</artifactId>
                     <scope>test</scope>
                 </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jersey.core</groupId>
+                    <artifactId>jersey-common</artifactId>
+                    <scope>test</scope>
+                </dependency>
             </dependencies>
             <build>
                 <testResources>
@@ -306,6 +311,12 @@
                     <artifactId>arquillian-payara-server-remote</artifactId>
                     <scope>test</scope>
                 </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jersey.core</groupId>
+                    <artifactId>jersey-common</artifactId>
+                    <scope>test</scope>
+                </dependency>
+
             </dependencies>
             <build>
                 <testResources>
@@ -613,8 +624,8 @@
             <id>liberty-remote</id>
             <dependencies>
                 <dependency>
-                    <groupId>fish.payara.arquillian</groupId>
-                    <artifactId>arquillian-payara-server-remote</artifactId>
+                    <groupId>io.openliberty.arquillian</groupId>
+                    <artifactId>arquillian-liberty-remote</artifactId>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -624,7 +635,10 @@
                         <directory>src/test/resources</directory>
                     </testResource>
                     <testResource>
-                        <directory>src/test/payara-remote</directory>
+                        <directory>src/test/liberty-remote</directory>
+                        <excludes>
+                            <exclude>server.xml</exclude>
+                        </excludes>
                     </testResource>
                 </testResources>
                 <plugins>
@@ -632,21 +646,15 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
-                            <!-- This needs tuning -->
                             <systemPropertyVariables>
-                                <arquillian.launch>payara-remote</arquillian.launch>
+                                <arquillian.launch>liberty-remote</arquillian.launch>
+                                <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties</java.util.logging.config.file>
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
                 </plugins>
             </build>
         </profile>
-
-
-
-
-
-
     </profiles>
 
 </project>

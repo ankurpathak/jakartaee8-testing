@@ -33,7 +33,7 @@
     <wildfly.version>22.0.1.Final</wildfly.version>
     <liberty.version>21.0.0.2</liberty.version>
     <arquillian-glassfish.version>1.0.2</arquillian-glassfish.version>
-    <arquillian-payara.version>2.3.3</arquillian-payara.version>
+    <arquillian-payara.version>2.3.1</arquillian-payara.version>
     <arquillian-wildfly.version>3.0.1.Final</arquillian-wildfly.version>
     <arquillian-liberty.version>1.0.6</arquillian-liberty.version>
     <jackson.version>2.12.1</jackson.version>
@@ -97,6 +97,11 @@
       </dependency>
       <!--\ Jersey Client -->
       <!-- Arquillian Glassfish-->
+      <dependency>
+        <groupId>org.glassfish.jersey.core</groupId>
+        <artifactId>jersey-common</artifactId>
+        <version>${jersey.version}</version>
+      </dependency>
       <dependency>
         <groupId>org.jboss.arquillian.container</groupId>
         <artifactId>arquillian-glassfish-managed-3.1</artifactId>
@@ -183,14 +188,18 @@
         <version>${gson.version}</version>
       </dependency>
       <!--\ Gson -->
-      <!-- Liberty -->
+      <!-- Arquillian Liberty -->
       <dependency>
         <groupId>io.openliberty.arquillian</groupId>
         <artifactId>arquillian-liberty-managed</artifactId>
         <version>${arquillian-liberty.version}</version>
-        <scope>test</scope>
       </dependency>
-      <!--\ Liberty -->
+      <dependency>
+        <groupId>io.openliberty.arquillian</groupId>
+        <artifactId>arquillian-liberty-remote</artifactId>
+        <version>${arquillian-liberty.version}</version>
+      </dependency>
+      <!--\ Arquillian Liberty -->
     </dependencies>
   </dependencyManagement>
 
