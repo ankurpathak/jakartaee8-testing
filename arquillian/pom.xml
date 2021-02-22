@@ -104,10 +104,6 @@
     <profiles>
         <profile>
             <id>glassfish-managed</id>
-            <properties>
-                <skip.unit.tests>${skipTests}</skip.unit.tests>
-                <skip.integration.tests>${skipTests}</skip.integration.tests>
-            </properties>
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
@@ -169,10 +165,6 @@
         </profile>
         <profile>
             <id>glassfish-remote</id>
-            <properties>
-                <skip.unit.tests>${skipTests}</skip.unit.tests>
-                <skip.integration.tests>${skipTests}</skip.integration.tests>
-            </properties>
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
@@ -206,10 +198,6 @@
         </profile>
         <profile>
             <id>glassfish-embedded</id>
-            <properties>
-                <skip.unit.tests>${skipTests}</skip.unit.tests>
-                <skip.integration.tests>${skipTests}</skip.integration.tests>
-            </properties>
             <dependencies>
                 <dependency>
                     <groupId>org.glassfish.main.extras</groupId>
@@ -251,10 +239,6 @@
         </profile>
         <profile>
             <id>payara-managed</id>
-            <properties>
-                <skip.unit.tests>${skipTests}</skip.unit.tests>
-                <skip.integration.tests>${skipTests}</skip.integration.tests>
-            </properties>
             <dependencies>
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
@@ -316,10 +300,6 @@
         </profile>
         <profile>
             <id>payara-remote</id>
-            <properties>
-                <skip.unit.tests>${skipTests}</skip.unit.tests>
-                <skip.integration.tests>${skipTests}</skip.integration.tests>
-            </properties>
             <dependencies>
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
@@ -352,10 +332,6 @@
         </profile>
         <profile>
             <id>payara-embedded</id>
-            <properties>
-                <skip.unit.tests>${skipTests}</skip.unit.tests>
-                <skip.integration.tests>${skipTests}</skip.integration.tests>
-            </properties>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
@@ -396,10 +372,6 @@
         </profile>
         <profile>
             <id>wildfly-managed</id>
-            <properties>
-                <skip.unit.tests>${skipTests}</skip.unit.tests>
-                <skip.integration.tests>${skipTests}</skip.integration.tests>
-            </properties>
             <dependencies>
                 <dependency>
                     <groupId>org.wildfly.arquillian</groupId>
@@ -447,9 +419,11 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
+                            <!--
                             <environmentVariables>
                                 <JBOSS_HOME>${project.build.directory}/wildfly-${wildfly.version}</JBOSS_HOME>
                             </environmentVariables>
+                            -->
                             <systemPropertyVariables>
                                 <arquillian.launch>wildfly-managed</arquillian.launch>
                                 <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
@@ -461,10 +435,6 @@
         </profile>
         <profile>
             <id>wildfly-remote</id>
-            <properties>
-                <skip.unit.tests>${skipTests}</skip.unit.tests>
-                <skip.integration.tests>${skipTests}</skip.integration.tests>
-            </properties>
             <dependencies>
                 <dependency>
                     <groupId>org.wildfly.arquillian</groupId>
@@ -495,6 +465,185 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>wildfly-embedded</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly.arquillian</groupId>
+                    <artifactId>wildfly-arquillian-container-embedded</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources</directory>
+                    </testResource>
+                    <testResource>
+                        <directory>src/test/wildfly-embedded</directory>
+                        <filtering>true</filtering>
+                    </testResource>
+                </testResources>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.wildfly</groupId>
+                                            <artifactId>wildfly-dist</artifactId>
+                                            <version>${wildfly.version}</version>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <environmentVariables>
+                                <JBOSS_HOME>${project.build.directory}/wildfly-${wildfly.version}</JBOSS_HOME>
+                            </environmentVariables>
+                            <systemPropertyVariables>
+                                <arquillian.launch>wildfly-embedded</arquillian.launch>
+                                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>liberty-managed</id>
+            <dependencies>
+                <dependency>
+                    <groupId>io.openliberty.arquillian</groupId>
+                    <artifactId>arquillian-liberty-managed</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources</directory>
+                    </testResource>
+                    <testResource>
+                        <directory>src/test/liberty-managed</directory>
+                        <filtering>true</filtering>
+                        <excludes>
+                            <exclude>server.xml</exclude>
+                        </excludes>
+                    </testResource>
+                    <testResource>
+                        <directory>src/test/liberty-managed</directory>
+                        <includes>
+                            <include>server.xml</include>
+                        </includes>
+                        <targetPath>
+                            ${project.build.directory}/wlp/usr/servers/defaultServer
+                        </targetPath>
+                    </testResource>
+                </testResources>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>io.openliberty</groupId>
+                                            <artifactId>openliberty-runtime</artifactId>
+                                            <version>${liberty.version}</version>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}</outputDirectory>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>io.openliberty.arquillian</groupId>
+                                            <artifactId>arquillian-liberty-support</artifactId>
+                                            <version>${arquillian-liberty.version}</version>
+                                            <type>zip</type>
+                                            <classifier>feature</classifier>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}/wlp/usr</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <!--
+                            <environmentVariables>
+                                <WLP_HOME>${project.build.directory}/wlp</WLP_HOME>
+                            </environmentVariables> -->
+                            <systemPropertyVariables>
+                                <arquillian.launch>liberty-managed</arquillian.launch>
+                                <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties</java.util.logging.config.file>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>liberty-remote</id>
+            <dependencies>
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>arquillian-payara-server-remote</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources</directory>
+                    </testResource>
+                    <testResource>
+                        <directory>src/test/payara-remote</directory>
+                    </testResource>
+                </testResources>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <!-- This needs tuning -->
+                            <systemPropertyVariables>
+                                <arquillian.launch>payara-remote</arquillian.launch>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+
+
 
 
 

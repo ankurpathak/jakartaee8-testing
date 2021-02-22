@@ -31,13 +31,14 @@
     <glassfish.version>5.1.0</glassfish.version>
     <payara.version>5.2021.1</payara.version>
     <wildfly.version>22.0.1.Final</wildfly.version>
+    <liberty.version>21.0.0.2</liberty.version>
     <arquillian-glassfish.version>1.0.2</arquillian-glassfish.version>
     <arquillian-payara.version>2.3.3</arquillian-payara.version>
     <arquillian-wildfly.version>3.0.1.Final</arquillian-wildfly.version>
+    <arquillian-liberty.version>1.0.6</arquillian-liberty.version>
     <jackson.version>2.12.1</jackson.version>
     <gson.version>2.8.6</gson.version>
     <skipTests>false</skipTests>
-    <maven.test.skip>${skipTests}</maven.test.skip>
     <rest-assured.version>4.3.3</rest-assured.version>
   </properties>
   <dependencyManagement>
@@ -162,6 +163,11 @@
         <version>${arquillian-wildfly.version}</version>
         <scope>test</scope>
       </dependency>
+      <dependency>
+        <groupId>org.wildfly.arquillian</groupId>
+        <artifactId>wildfly-arquillian-container-embedded</artifactId>
+        <version>${arquillian-wildfly.version}</version>
+      </dependency>
       <!--\ Arquillian Wildfly -->
       <!-- Jackson -->
       <dependency>
@@ -177,11 +183,14 @@
         <version>${gson.version}</version>
       </dependency>
       <!--\ Gson -->
-
-
-
-
-
+      <!-- Liberty -->
+      <dependency>
+        <groupId>io.openliberty.arquillian</groupId>
+        <artifactId>arquillian-liberty-managed</artifactId>
+        <version>${arquillian-liberty.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <!--\ Liberty -->
     </dependencies>
   </dependencyManagement>
 
