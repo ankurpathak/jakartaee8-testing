@@ -5,11 +5,26 @@
     http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
     <!--    <defaultProtocol type="Servlet 5.0"/>-->
 
-    <container qualifier="payara-remote" >
+    <container qualifier="payara-remote">
         <configuration>
-            <!-- <property name="adminUser">admin</property>
-            <property name="adminPassword">admin</property> -->
+            <!-- Docker Container -->
+            <!--
+            <property name="adminUser">admin</property>
+            <property name="adminPassword">admin</property>
+            <property name="adminHttps">true</property>
+             -->
+            <!--\ Docker Container -->
         </configuration>
     </container>
+    <!-- No Docker Container -->
+    <!-- asadmin start-domain domain1 -->
+    <!-- asadmin stop-domain -->
+    <!--\ No Docker Container -->
+
+    <!-- Docker Container -->
+    <!-- export the cert from docker container /opt/payara/appserver/glassfish/domains/domain1/config/keystore.jks -->
+    <!-- import cert from  jre/lib/security/cacerts #default password is changeit -->
+
+    <!--\ Docker Container -->
 
 </arquillian>

@@ -15,4 +15,13 @@
         </configuration>
     </container>
 
+    <!-- No Docker Container -->
+    <!-- add-user admin admin --silent]]-->
+    <!-- standalone -->
+    <!--\ No Docker Container -->
+
+    <!-- Docker Container -->
+    <!-- add-user admin admin --silent]]-->
+    <!--\ Docker Container -->
+
 </arquillian>

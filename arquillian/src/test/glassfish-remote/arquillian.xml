@@ -7,9 +7,15 @@
 
     <container qualifier="glassfish-remote" >
         <configuration>
-            <!-- <property name="adminUser">admin</property>
-            <property name="adminPassword">admin</property> -->
+            <!-- if management console is authenticated
+            <property name="adminUser">admin</property>
+            <property name="adminPassword">admin</property>
+            -->
         </configuration>
     </container>
+    <!-- No Docker Container -->
+    <!-- asadmin start-domain domain1 -->
+    <!-- asadmin stop-domain -->
+    <!--\ No Docker Container -->
 
 </arquillian>

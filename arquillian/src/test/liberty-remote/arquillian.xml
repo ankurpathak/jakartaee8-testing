@@ -15,5 +15,16 @@
             <property name="httpsPort">9443</property>
         </configuration>
     </container>
+    <!-- No Docker Container -->
+    <!-- server create defaultServer -->
+    <!-- server start defaultServer -->
+    <!-- server stop defaultServer -->
+    <!-- copy server.xml to  usr/servers/defaultServer -->
+    <!-- export cert from  usr/servers/defaultServer/resources/security/key.p12  #password is from server.xml-->
+    <!-- import cert from  jre/lib/security/cacerts #default password is changeit -->
+    <!--\ No Docker Container -->
+    <!-- Docker Container -->
+    <!-- No Success Yet -->
+    <!--\ Docker Container -->
 
 </arquillian>
