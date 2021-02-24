@@ -1,0 +1,19 @@
+<arquillian
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://jboss.org/schema/arquillian"
+        xsi:schemaLocation="http://jboss.org/schema/arquillian
+    http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+
+    <container qualifier="tomcat-remote" >
+        <configuration>
+            <property name="user">admin</property>
+            <property name="pass">password</property>
+        </configuration>
+    </container>
+    <!-- No Docker Container -->
+    <!-- copy tomcat-users.xml to conf -->
+    <!-- copy setenv.sh to bin -->
+    <!-- give setenv.sh it permissions similar to  setclasspath.sh -->
+    <!-- catalina.sh run -->
+    <!--\ No Docker Container -->
+</arquillian>

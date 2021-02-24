@@ -16,8 +16,6 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
-    <maven.compiler.source>${java.version}</maven.compiler.source>
-    <maven.compiler.target>${java.version}</maven.compiler.target>
     <arquillian-bom.version>1.7.0.Alpha7</arquillian-bom.version>
     <junit.version>4.13.2</junit.version>
     <jersey.version>2.33</jersey.version>
@@ -210,6 +208,26 @@
         <artifactId>arquillian-tomcat-managed-8</artifactId>
         <version>${arquillian-tomcat.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.jboss.arquillian.container</groupId>
+        <artifactId>arquillian-tomcat-remote-7</artifactId>
+        <version>${arquillian-tomcat.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.arquillian.container</groupId>
+        <artifactId>arquillian-tomcat-embedded-9</artifactId>
+        <version>${arquillian-tomcat.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-core</artifactId>
+        <version>${tomcat.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-jasper</artifactId>
+        <version>${tomcat.version}</version>
+      </dependency>
       <!-- Arquillian Tomcat -->
 
 
@@ -219,6 +237,11 @@
   <build>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven-surefire-plugin.version}</version>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
