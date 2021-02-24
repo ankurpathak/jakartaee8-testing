@@ -3,7 +3,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>com.github.ankurpathak</groupId>
   <artifactId>javaee8-testing</artifactId>
   <version>1.0-SNAPSHOT</version>
@@ -32,7 +31,6 @@
     <payara.version>5.2021.1</payara.version>
     <wildfly.version>22.0.1.Final</wildfly.version>
     <liberty.version>21.0.0.2</liberty.version>
-    <tomcat.version>9.0.43</tomcat.version>
     <arquillian-glassfish.version>1.0.2</arquillian-glassfish.version>
     <arquillian-payara.version>2.3.1</arquillian-payara.version>
     <arquillian-wildfly.version>3.0.1.Final</arquillian-wildfly.version>
@@ -202,38 +200,8 @@
         <version>${arquillian-liberty.version}</version>
       </dependency>
       <!--\ Arquillian Liberty -->
-      <!-- Arquillian Tomcat -->
-      <dependency>
-        <groupId>org.jboss.arquillian.container</groupId>
-        <artifactId>arquillian-tomcat-managed-8</artifactId>
-        <version>${arquillian-tomcat.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jboss.arquillian.container</groupId>
-        <artifactId>arquillian-tomcat-remote-7</artifactId>
-        <version>${arquillian-tomcat.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jboss.arquillian.container</groupId>
-        <artifactId>arquillian-tomcat-embedded-9</artifactId>
-        <version>${arquillian-tomcat.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.tomcat.embed</groupId>
-        <artifactId>tomcat-embed-core</artifactId>
-        <version>${tomcat.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.tomcat.embed</groupId>
-        <artifactId>tomcat-embed-jasper</artifactId>
-        <version>${tomcat.version}</version>
-      </dependency>
-      <!-- Arquillian Tomcat -->
-
-
     </dependencies>
   </dependencyManagement>
-
   <build>
     <pluginManagement>
       <plugins>

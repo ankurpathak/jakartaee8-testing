@@ -102,6 +102,7 @@
         </plugins>
     </build>
     <profiles>
+        <!-- Glassfish Managed -->
         <profile>
             <id>glassfish-managed</id>
             <dependencies>
@@ -163,6 +164,8 @@
                 </plugins>
             </build>
         </profile>
+        <!--\ Glassfish Managed -->
+        <!-- Glassfish Remote -->
         <profile>
             <id>glassfish-remote</id>
             <dependencies>
@@ -196,6 +199,8 @@
             </build>
 
         </profile>
+        <!--\ Glassfish Remote -->
+        <!-- Glassfish Embedded -->
         <profile>
             <id>glassfish-embedded</id>
             <dependencies>
@@ -237,6 +242,8 @@
             </build>
 
         </profile>
+        <!--\ Glassfish Embedded -->
+        <!-- Payara Managed -->
         <profile>
             <id>payara-managed</id>
             <dependencies>
@@ -303,6 +310,8 @@
                 </plugins>
             </build>
         </profile>
+        <!--\ Payara Managed -->
+        <!-- Payara Remote -->
         <profile>
             <id>payara-remote</id>
             <dependencies>
@@ -341,6 +350,8 @@
                 </plugins>
             </build>
         </profile>
+        <!--\ Payara Remote -->
+        <!-- Payara Embedded -->
         <profile>
             <id>payara-embedded</id>
             <dependencies>
@@ -378,6 +389,8 @@
                 </plugins>
             </build>
         </profile>
+        <!--\ Payara Embedded -->
+        <!-- Wildfly Managed -->
         <profile>
             <id>wildfly-managed</id>
             <dependencies>
@@ -441,6 +454,8 @@
                 </plugins>
             </build>
         </profile>
+        <!--\ Wildfly Managed -->
+        <!-- Wildfly Remote -->
         <profile>
             <id>wildfly-remote</id>
             <dependencies>
@@ -473,6 +488,8 @@
                 </plugins>
             </build>
         </profile>
+        <!--\ Wildfly Remote -->
+        <!-- Wildfly Embedded -->
         <profile>
             <id>wildfly-embedded</id>
             <dependencies>
@@ -534,6 +551,8 @@
                 </plugins>
             </build>
         </profile>
+        <!--\ Wildfly Embedded -->
+        <!-- Liberty Managed -->
         <profile>
             <id>liberty-managed</id>
             <dependencies>
@@ -615,6 +634,8 @@
                 </plugins>
             </build>
         </profile>
+        <!--\ Liberty Managed -->
+        <!-- Liberty Remote -->
         <profile>
             <id>liberty-remote</id>
             <dependencies>
@@ -650,165 +671,6 @@
                 </plugins>
             </build>
         </profile>
-        <profile>
-            <id>tomcat-managed</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-tomcat-managed-8</artifactId>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <testResources>
-                    <testResource>
-                        <directory>src/test/resources</directory>
-                    </testResource>
-                    <testResource>
-                        <directory>src/test/tomcat-managed</directory>
-                        <filtering>true</filtering>
-                        <excludes>
-                            <exclude>tomcat-users.xml</exclude>
-                        </excludes>
-                    </testResource>
-                   <!--<testResource>
-                        <directory>src/test/tomcat-managed</directory>
-                        <includes>
-                            <include>tomcat-users.xml</include>
-                        </includes>
-                        <targetPath>${project.build.directory}/apache-tomcat-${tomcat.version}/conf</targetPath>
-                    </testResource>-->
-                </testResources>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>unpack</id>
-                                <phase>prepare-package</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>org.apache.tomcat</groupId>
-                                            <artifactId>tomcat</artifactId>
-                                            <version>${tomcat.version}</version>
-                                            <type>zip</type>
-                                            <overWrite>false</overWrite>
-                                            <outputDirectory>${project.build.directory}</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <phase>pre-integration-test</phase>
-                                <configuration>
-                                    <target>
-                                        <copy file="${project.basedir}/src/test/tomcat-managed/tomcat-users.xml"
-                                              tofile="${project.build.directory}/apache-tomcat-${tomcat.version}/conf/tomcat-users.xml" overwrite="true" />
-                                    </target>
-                                </configuration>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <configuration>
-                            <!-- <environmentVariables>
-                                <CATALINA_HOME>${project.build.directory}/apache-tomcat-${tomcat.version}</GLASSFISH_HOME>
-                            </environmentVariables> -->
-                            <systemPropertyVariables>
-                                <arquillian.launch>tomcat-managed</arquillian.launch>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>tomcat-remote</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-tomcat-remote-7</artifactId>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <testResources>
-                    <testResource>
-                        <directory>src/test/resources</directory>
-                    </testResource>
-                    <testResource>
-                        <directory>src/test/tomcat-remote</directory>
-                    </testResource>
-                </testResources>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <configuration>
-                            <!-- This needs tuning -->
-                            <systemPropertyVariables>
-                                <arquillian.launch>tomcat-remote</arquillian.launch>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>tomcat-embedded</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-tomcat-embedded-9</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.tomcat.embed</groupId>
-                    <artifactId>tomcat-embed-core</artifactId>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.apache.tomcat.embed</groupId>
-                    <artifactId>tomcat-embed-jasper</artifactId>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <testResources>
-                    <testResource>
-                        <directory>src/test/resources</directory>
-                    </testResource>
-                    <testResource>
-                        <directory>src/test/tomcat-embedded</directory>
-                    </testResource>
-                </testResources>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <configuration>
-                            <systemPropertyVariables>
-                                <arquillian.launch>tomcat-embedded</arquillian.launch>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
+        <!-- Liberty Remote -->
     </profiles>
 </project>
