@@ -41,4 +41,4 @@ services:
     #    environment:
     volumes:
       - ./deployments:/config/dropins
-      - ./src/test/liberty-remote:/liberty/usr/servers/myserver
+      - ./src/test/liberty-remote/server.xml:/liberty/usr/servers/defaultServer/server.xml
