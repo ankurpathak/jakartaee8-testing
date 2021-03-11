@@ -16,7 +16,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
     <arquillian-bom.version>1.7.0.Alpha7</arquillian-bom.version>
-    <junit.version>4.13.2</junit.version>
+    <junit.version>5.7.1</junit.version>
     <jersey.version>2.33</jersey.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <maven-war-plugin.version>3.3.1</maven-war-plugin.version>
@@ -54,10 +54,9 @@
       <!--\ Arquillian -->
       <!-- Junit -->
       <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.12</version>
-        <scope>test</scope>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>${junit.version}</version>
       </dependency>
       <!--\ Junit -->
       <!-- Jakarta EE -->
